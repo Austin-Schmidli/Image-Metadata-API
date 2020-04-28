@@ -50,4 +50,4 @@ def metadata_to_json(metadata):
         else:
             return str(value)
 
-    return json.dumps({"metadata": metadata}, default=serialize, sort_keys=True)
+    return json.dumps(metadata, default=serialize, sort_keys=True)
