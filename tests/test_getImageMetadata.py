@@ -6,6 +6,7 @@ from getImageMetadata import getImageMetadata
 def test_test():
     assert True
 
+
 def test_bytes():
     getImageMetadata.bytes_to_image(None)
     assert True
