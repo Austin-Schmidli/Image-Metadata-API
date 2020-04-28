@@ -1,0 +1,8 @@
+{
+  "python.pythonPath": "venv/bin/python3",
+  "terminal.integrated.env.osx": {
+    "PYTHONPATH": "${workspaceFolder}"
+  },
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black"
+}
