@@ -30,7 +30,7 @@ jobs:
         run: |
           pip install pytest
           pip install pytest-cov
-          pytest --doctest-modules --junitxml=junit/test-results.xml --cov=getImageMetadata --cov-report=xml --cov-report=html
+          pytest --doctest-modules --junitxml=junit/test-results.xml --cov=./
       - name: Upload test results
         uses: actions/upload-artifact@master
         with:
@@ -38,8 +38,7 @@ jobs:
           path: junit/test-results.xml
         if: always()
       - name: Upload coverage results
-        uses: actions/upload-artifact@master
-        with:
-          name: coverage-results
-          path: htmlcov/
+        run: |
+          pip install codecov
+          codecov -t ${{ secrets.CODECOV_TOKEN }}
         if: always()
