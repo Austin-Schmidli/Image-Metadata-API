@@ -1,6 +1,6 @@
 import pytest
 
-from getImageMetadata import getImageMetadata
+import getImageMetadata.getImageMetadata as getImageMetadata
 
 # Dummy tests for now!
 def test_test():
