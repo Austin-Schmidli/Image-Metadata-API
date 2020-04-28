@@ -1,2 +1,2 @@
-import exifread
-import urllib3
+exifread
+urllib3
