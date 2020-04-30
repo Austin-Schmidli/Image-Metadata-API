@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     # Parse user request body out from API Gateway proxy request
     request = parse_request(event)
 
-    response = metadata_from_url(url)
+    response = metadata_from_url(request["url"])
 
     return {
         "statusCode": 200,
