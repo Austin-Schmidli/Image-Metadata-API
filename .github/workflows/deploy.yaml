@@ -59,13 +59,13 @@ jobs:
         uses: ShaunLWM/action-pushbullet@master
         env:
           PB_TOKEN: ${{ secrets.PUSHBULLET_TOKEN }}
-          PB_TITLE: Build Failed - $GITHUB_REF
-          PB_TEXT: Image-Metadata-API build failed
+          PB_TITLE: Build Failed - ${{ github.ref }}
+          PB_TEXT: Image-Metadata-API ${{ github.event_name }} build failed
         if: failure()
       - name: Send Pushbullet build success notification
         uses: ShaunLWM/action-pushbullet@master
         env:
           PB_TOKEN: ${{ secrets.PUSHBULLET_TOKEN }}
-          PB_TITLE: Build Succesful - $GITHUB_REF
-          PB_TEXT: Image-Metadata-API built successfully
+          PB_TITLE: Build Succesful - ${{ github.ref }}
+          PB_TEXT: Image-Metadata-API ${{ github.event_name }} built successfully
         if: success()
