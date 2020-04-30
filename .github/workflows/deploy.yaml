@@ -42,7 +42,7 @@ jobs:
           pip install codecov
           codecov -t ${{ secrets.CODECOV_TOKEN }}
         if: always()
-      - name: Create Deployment Package
+      - name: Create deployment package
         run: |
           pip install -r requirements.txt -t getImageMetadata/
           cd getImageMetadata
@@ -55,3 +55,17 @@ jobs:
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: getImageMetadata
           zip_file: getImageMetadata.zip
+      - name: Send Pushbullet build failure notification
+        uses: ShaunLWM/action-pushbullet@master
+        env:
+          PB_TOKEN: ${{ secrets.PUSHBULLET_TOKEN }}
+          PB_TITLE: Build Failed - ${{env.github.ref}}
+          PB_TEXT: Image-Metadata-API build failed
+        if: failure()
+      - name: Send Pushbullet build success notification
+        uses: ShaunLWM/action-pushbullet@master
+        env:
+          PB_TOKEN: ${{ secrets.PUSHBULLET_TOKEN }}
+          PB_TITLE: Build Succesful - ${{env.github.ref}}
+          PB_TEXT: Image-Metadata-API built successfully
+        if: success()
