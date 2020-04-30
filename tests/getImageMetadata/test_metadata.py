@@ -5,9 +5,9 @@ import os
 import exifread
 import pytest
 
-from getImageMetadata.metadata import restructure
-from getImageMetadata.metadata import add_group
-from getImageMetadata.metadata import to_json
+from getImageMetadata.getImageMetadata.metadata import restructure
+from getImageMetadata.getImageMetadata.metadata import add_group
+from getImageMetadata.getImageMetadata.metadata import to_json
 
 from tests.tools.tools import load_raw_test_metadata
 
