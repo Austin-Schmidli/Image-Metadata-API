@@ -1,8 +1,8 @@
 import json
 import logging
 
-import image
-import metadata
+import .image
+import .metadata
 
 
 def lambda_handler(event, context):
