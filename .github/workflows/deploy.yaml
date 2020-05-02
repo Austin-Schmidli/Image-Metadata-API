@@ -1,4 +1,4 @@
-name: Deploy to AWS Lambda
+name: Build and Deploy to AWS Lambda
 
 on:
   push:
@@ -60,12 +60,12 @@ jobs:
         env:
           PB_TOKEN: ${{ secrets.PUSHBULLET_TOKEN }}
           PB_TITLE: Build Failed - ${{ github.ref }}
-          PB_TEXT: Image-Metadata-API ${{ github.event_name }} build failed
+          PB_TEXT: Image-Metadata-API build failed
         if: failure()
       - name: Send Pushbullet build success notification
         uses: ShaunLWM/action-pushbullet@master
         env:
           PB_TOKEN: ${{ secrets.PUSHBULLET_TOKEN }}
           PB_TITLE: Build Succesful - ${{ github.ref }}
-          PB_TEXT: Image-Metadata-API ${{ github.event_name }} built successfully
+          PB_TEXT: Image-Metadata-API built successfully
         if: success()
