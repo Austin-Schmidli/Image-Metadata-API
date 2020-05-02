@@ -5,7 +5,7 @@ from getImageMetadata import image
 from getImageMetadata import metadata
 
 
-def lambda_handler(event, context):
+def lambda_handler(event: dict, context: dict) -> dict:
     logger = setup_logger()
 
     # Parse user request body out from API Gateway proxy request
@@ -40,7 +40,7 @@ def parse_request(event: dict) -> dict:
     return json.loads(event["body"])
 
 
-def metadata_from_url(url) -> dict:
+def metadata_from_url(url: str) -> dict:
     img = image.fetch_image(url)
     img_metadata = image.extract_metadata(img)
     img_metadata = metadata.restructure(img_metadata)
