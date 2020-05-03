@@ -12,7 +12,7 @@ def get_lambda_client(
         "lambda",
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
-        aws_region=aws_region,
+        region_name=aws_region,
     )
 
 
