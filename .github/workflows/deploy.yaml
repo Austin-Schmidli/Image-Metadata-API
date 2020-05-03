@@ -47,11 +47,11 @@ jobs:
         if: always()
       - name: Create deployment packages
         run: |
-          pip install -r requirements.txt -t lib/
-          zip -r lib.zip lib
-          cd getImageMetadata
-          zip -r ../getImageMetadata.zip *
-          cd ..
+          mkdir layer
+          pip install -r lib/requirements.txt -t layer/
+          mv lib layer
+          cd layer
+          zip -r ../layer.zip layer
       - name: Deploy to AWS Lambda
         run: |
           pip install -r deploy/requirements.txt
