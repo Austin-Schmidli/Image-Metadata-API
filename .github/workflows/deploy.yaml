@@ -52,7 +52,7 @@ jobs:
           pip install -r img_metadata_lib/requirements.txt -t img_metadata_lib_layer/python/
           mv img_metadata_lib img_metadata_lib_layer/python/
           cd img_metadata_lib_layer
-          zip -r ../img_metadata_lib.zip .
+          zip -r ../img_metadata_lib_layer.zip .
           cd ..
           cd getImageMetadata
           zip -r ../getImageMetadata.zip .
