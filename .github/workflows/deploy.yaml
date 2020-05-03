@@ -17,6 +17,8 @@ jobs:
         with:
           python-version: "3.8.2"
           architecture: "x64"
+      - name: Add working directory to pythonpath
+        run: echo "::set-env name=PYTHONPATH::."
       - name: Display Python version
         run: python -c "import sys; print('Building on Python '+sys.version)"
       - name: Lint with black
