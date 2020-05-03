@@ -52,6 +52,10 @@ jobs:
           mv lib layer
           cd layer
           zip -r ../layer.zip *
+          cd ..
+          cd getImageMetadata
+          zip -r ../getImageMetadata.zip *
+          cd ..
       - name: Deploy to AWS Lambda
         run: |
           pip install -r deploy/requirements.txt
