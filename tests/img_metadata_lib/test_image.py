@@ -1,9 +1,8 @@
 import pytest
 
-from lib.image import fetch_image
-from lib.image import extract_metadata
-
 from tests.tools.tools import load_test_images
+from img_metadata_lib.image import fetch_image
+from img_metadata_lib.image import extract_metadata
 
 
 @pytest.fixture(params=load_test_images())
