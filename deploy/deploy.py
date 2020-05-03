@@ -1,28 +1,31 @@
 import aws
+from deploy_function import deploy_function
 from deploy_layer import publish_layer
 
 
 def deploy(lambda_client):
     # For now I'm just hardcoding the deployments ¯\_(ツ)_/¯
 
-    # common library
-    layer_arn = publish_layer(lambda_client, "layer.zip", "image-metadata-layer")
+    # img_metadata_lib common library
+    img_metadata_lib_arn = publish_layer(
+        lambda_client, "img_metadata_lib_layer.zip", "image-metadata-layer"
+    )
 
     # getImageMetadata
-    with open("getImageMetadata.zip", "rb") as f:
-        getImageMetadataZip = f.read()
-
-    print(f"Updating function code for getImageMetadata")
-    response = lambda_client.update_function_code(
-        FunctionName="getImageMetadata", ZipFile=getImageMetadataZip
+    deploy_function(
+        lambda_client,
+        "getImageMetadata",
+        "getImageMetadata.zip",
+        [img_metadata_lib_arn],
     )
-    print(response)
 
-    print(f"Updating function configuration for getImageMetadata")
-    response = lambda_client.update_function_configuration(
-        FunctionName="getImageMetadata", Layers=[layer_arn]
+    # getMetadataByIFD
+    deploy_function(
+        lambda_client,
+        "getMetadataByIFD",
+        "getMetadataByIFD.zip",
+        [img_metadata_lib_arn],
     )
-    print(response)
 
 
 if __name__ == "__main__":

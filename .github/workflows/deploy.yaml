@@ -47,15 +47,18 @@ jobs:
         if: always()
       - name: Create deployment packages
         run: |
-          mkdir layer
-          mkdir layer/python
-          pip install -r img_metadata_lib/requirements.txt -t layer/python/
-          mv img_metadata_lib layer/python/
-          cd layer
-          zip -r ../layer.zip .
+          mkdir img_metadata_lib_layer
+          mkdir img_metadata_lib_layer/python
+          pip install -r img_metadata_lib/requirements.txt -t img_metadata_lib_layer/python/
+          mv img_metadata_lib img_metadata_lib_layer/python/
+          cd img_metadata_lib_layer
+          zip -r ../img_metadata_lib.zip .
           cd ..
           cd getImageMetadata
           zip -r ../getImageMetadata.zip .
+          cd ..
+          cd getMetadataByIFD
+          zip -r ../getMetadataByIFD.zip .
           cd ..
       - name: Deploy to AWS
         run: |
