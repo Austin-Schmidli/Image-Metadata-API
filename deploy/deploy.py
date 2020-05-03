@@ -6,7 +6,7 @@ def deploy(lambda_client):
     # For now I'm just hardcoding the deployments ¯\_(ツ)_/¯
 
     # common library
-    lib_layer_arn = publish_layer(lambda_client, "lib.zip", "lib")
+    layer_arn = publish_layer(lambda_client, "layer.zip", "image-metadata-layer")
 
     # getImageMetadata
     with open("getImageMetadata.zip", "rb") as f:
@@ -21,7 +21,7 @@ def deploy(lambda_client):
     try:
         print(f"Updating function configuration for getImageMetadata")
         response = lambda_client.update_function_configuration(
-            FunctionName="getImageMetadata", Layers=[lib_layer_arn]
+            FunctionName="getImageMetadata", Layers=[layer_arn]
         )
         print(response)
     except Exception as e:

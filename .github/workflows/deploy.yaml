@@ -51,7 +51,7 @@ jobs:
           pip install -r lib/requirements.txt -t layer/
           mv lib layer
           cd layer
-          zip -r ../layer.zip layer
+          zip -r ../layer.zip *
       - name: Deploy to AWS Lambda
         run: |
           pip install -r deploy/requirements.txt
