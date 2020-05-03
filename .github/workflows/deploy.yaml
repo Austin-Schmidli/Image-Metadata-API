@@ -57,7 +57,7 @@ jobs:
       - name: Deploy to AWS Lambda
         run: |
           pip install -r deploy/requirements.txt
-          python deploy/deploy.py --AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} --AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          python deploy/deploy.py --AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} --AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} --AWS_REGION=${{ secrets.AWS_REGION}}
       - name: Send Pushbullet build failure notification
         uses: ShaunLWM/action-pushbullet@master
         env:

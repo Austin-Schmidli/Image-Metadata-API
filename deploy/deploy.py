@@ -29,6 +29,8 @@ if __name__ == "__main__":
     parser = aws.get_arg_parser()
     args = parser.parse_args()
 
-    client = aws.get_lambda_client(args.AWS_ACCESS_KEY_ID, args.AWS_SECRET_ACCESS_KEY)
+    client = aws.get_lambda_client(
+        args.AWS_ACCESS_KEY_ID, args.AWS_SECRET_ACCESS_KEY, args.AWS_REGION
+    )
 
     deploy(client)
