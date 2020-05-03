@@ -47,9 +47,8 @@ jobs:
         if: always()
       - name: Create deployment packages
         run: |
-          cd lib
-          pip install -r requirements.txt -t .
-          zip -r ../lib.zip *
+          pip install -r requirements.txt -t lib/
+          zip -r lib.zip *
           cd ..
           cd getImageMetadata
           zip -r ../getImageMetadata.zip *
