@@ -48,13 +48,14 @@ jobs:
       - name: Create deployment packages
         run: |
           mkdir layer
-          pip install -r lib/requirements.txt -t layer/
-          mv lib layer
+          mkdir layer/python
+          pip install -r lib/requirements.txt -t layer/python/
+          mv lib layer/python/
           cd layer
-          zip -r ../layer.zip *
+          zip -r ../layer.zip .
           cd ..
           cd getImageMetadata
-          zip -r ../getImageMetadata.zip *
+          zip -r ../getImageMetadata.zip .
           cd ..
       - name: Deploy to AWS Lambda
         run: |
