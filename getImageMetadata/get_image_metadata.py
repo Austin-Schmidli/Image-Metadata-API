@@ -1,9 +1,9 @@
 import json
 import logging
 
-from lib import image
-from lib import common
-from lib import metadata
+from img_metadata_lib import image
+from img_metadata_lib import common
+from img_metadata_lib import metadata
 
 
 def lambda_handler(event: dict, context: dict) -> dict:

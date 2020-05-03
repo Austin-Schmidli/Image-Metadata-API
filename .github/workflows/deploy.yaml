@@ -3,7 +3,8 @@ name: Build and Deploy to AWS Lambda
 on:
   push:
     branches:
-      - master
+      - "*"
+# TODO: Figure out branch CI/CD strategy
 
 jobs:
   build:
@@ -16,6 +17,8 @@ jobs:
         with:
           python-version: "3.8.2"
           architecture: "x64"
+      - name: Add working directory to pythonpath
+        run: echo "::set-env name=PYTHONPATH::."
       - name: Display Python version
         run: python -c "import sys; print('Building on Python '+sys.version)"
       - name: Lint with black
@@ -44,17 +47,20 @@ jobs:
         if: always()
       - name: Create deployment packages
         run: |
-          cd lib
-          pip install -r requirements.txt -t .
-          zip -r ../lib.zip *
+          mkdir layer
+          mkdir layer/python
+          pip install -r img_metadata_lib/requirements.txt -t layer/python/
+          mv img_metadata_lib layer/python/
+          cd layer
+          zip -r ../layer.zip .
           cd ..
           cd getImageMetadata
-          zip -r ../getImageMetadata.zip *
+          zip -r ../getImageMetadata.zip .
           cd ..
-      - name: Deploy to AWS Lambda
+      - name: Deploy to AWS
         run: |
           pip install -r deploy/requirements.txt
-          python deploy/deploy.py --AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} --AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          python deploy/deploy.py --AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} --AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} --AWS_REGION=${{ secrets.AWS_REGION}}
       - name: Send Pushbullet build failure notification
         uses: ShaunLWM/action-pushbullet@master
         env:

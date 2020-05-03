@@ -2,8 +2,8 @@ import logging
 
 import pytest
 
-from lib.common import setup_logger
-from lib.common import get_event_body
+from img_metadata_lib.common import setup_logger
+from img_metadata_lib.common import get_event_body
 
 
 def test_setup_logger_returns_logger():

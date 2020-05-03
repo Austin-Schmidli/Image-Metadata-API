@@ -5,11 +5,10 @@ import os
 import exifread
 import pytest
 
-from lib.metadata import restructure
-from lib.metadata import add_IFD
-from lib.metadata import to_json
-
 from tests.tools.tools import load_raw_test_metadata
+from img_metadata_lib.metadata import restructure
+from img_metadata_lib.metadata import add_IFD
+from img_metadata_lib.metadata import to_json
 
 
 @pytest.fixture(params=load_raw_test_metadata())
