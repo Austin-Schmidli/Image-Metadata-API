@@ -3,7 +3,8 @@ name: Build and Deploy to AWS Lambda
 on:
   push:
     branches:
-      - master
+      - "*"
+# TODO: Figure out branch CI/CD strategy
 
 jobs:
   build:
