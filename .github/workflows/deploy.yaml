@@ -49,7 +49,6 @@ jobs:
         run: |
           pip install -r requirements.txt -t lib/
           zip -r lib.zip lib
-          cd ..
           cd getImageMetadata
           zip -r ../getImageMetadata.zip *
           cd ..
