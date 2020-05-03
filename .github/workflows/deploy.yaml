@@ -48,7 +48,7 @@ jobs:
       - name: Create deployment packages
         run: |
           pip install -r requirements.txt -t lib/
-          zip -r lib.zip *
+          zip -r lib.zip lib
           cd ..
           cd getImageMetadata
           zip -r ../getImageMetadata.zip *
