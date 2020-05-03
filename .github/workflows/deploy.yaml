@@ -42,19 +42,19 @@ jobs:
           pip install codecov
           codecov -t ${{ secrets.CODECOV_TOKEN }}
         if: always()
-      - name: Create deployment package
+      - name: Create deployment packages
         run: |
-          pip install -r requirements.txt -t getImageMetadata/
+          cd lib
+          pip install -r requirements.txt -t .
+          zip -r ../lib.zip *
+          cd ..
           cd getImageMetadata
           zip -r ../getImageMetadata.zip *
+          cd ..
       - name: Deploy to AWS Lambda
-        uses: appleboy/lambda-action@master
-        with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: ${{ secrets.AWS_REGION }}
-          function_name: getImageMetadata
-          zip_file: getImageMetadata.zip
+        run: |
+          pip install -r deploy/requirements.txt
+          python deploy/deploy.py --AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} --AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Send Pushbullet build failure notification
         uses: ShaunLWM/action-pushbullet@master
         env:

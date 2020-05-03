@@ -5,9 +5,9 @@ import os
 import exifread
 import pytest
 
-from getImageMetadata.getImageMetadata.metadata import restructure
-from getImageMetadata.getImageMetadata.metadata import add_IFD
-from getImageMetadata.getImageMetadata.metadata import to_json
+from lib.metadata import restructure
+from lib.metadata import add_IFD
+from lib.metadata import to_json
 
 from tests.tools.tools import load_raw_test_metadata
 

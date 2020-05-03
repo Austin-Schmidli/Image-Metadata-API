@@ -1,7 +1,7 @@
 import pytest
 
-from getImageMetadata.getImageMetadata.image import fetch_image
-from getImageMetadata.getImageMetadata.image import extract_metadata
+from lib.image import fetch_image
+from lib.image import extract_metadata
 
 from tests.tools.tools import load_test_images
 
