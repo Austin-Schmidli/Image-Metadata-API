@@ -18,14 +18,11 @@ def deploy(lambda_client):
     )
     print(response)
 
-    try:
-        print(f"Updating function configuration for getImageMetadata")
-        response = lambda_client.update_function_configuration(
-            FunctionName="getImageMetadata", Layers=[layer_arn]
-        )
-        print(response)
-    except Exception as e:
-        print(e)
+    print(f"Updating function configuration for getImageMetadata")
+    response = lambda_client.update_function_configuration(
+        FunctionName="getImageMetadata", Layers=[layer_arn]
+    )
+    print(response)
 
 
 if __name__ == "__main__":
