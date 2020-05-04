@@ -36,6 +36,17 @@ def add_IFD(metadata: dict, ifd: str) -> dict:
     return metadata
 
 
+def remove_thumbnail(metadata: dict) -> dict:
+    """Removes the JPEGThumbnail property if it exists"""
+    if "JPEGThumbnail" in metadata:
+        del metadata["JPEGThumbnail"]
+    elif "Thumbnail" in metadata:
+        if "JPEGThumbnail" in metadata["Thumbnail"]:
+            del metadata["Thumbnail"]["JPEGThumbnail"]
+
+    return metadata
+
+
 def to_json(metadata: dict) -> str:
     """Creates a valid json string out of a metadata dictionary"""
 

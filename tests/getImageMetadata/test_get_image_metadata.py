@@ -1,4 +1,3 @@
 import pytest
 
 from getImageMetadata.get_image_metadata import lambda_handler
-from getImageMetadata.get_image_metadata import metadata_from_url

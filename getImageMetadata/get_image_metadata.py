@@ -12,6 +12,13 @@ def lambda_handler(event: dict, context: dict) -> dict:
     # Parse user request body out from API Gateway proxy request
     request = common.get_event_body(event)
 
+    img = image.fetch_image(url)
+    img_metadata = image.extract_metadata(img)
+    img_metadata = metadata.restructure(img_metadata)
+
+    if request.get("include_thumbnail", False):
+        img_metadata = metadata.remove_thumbnail(img_metadata)
+
     response = metadata_from_url(request["url"])
 
     return {
@@ -20,10 +27,3 @@ def lambda_handler(event: dict, context: dict) -> dict:
         "body": response,
         "isBase64Encoded": False,
     }
-
-
-def metadata_from_url(url: str) -> dict:
-    img = image.fetch_image(url)
-    img_metadata = image.extract_metadata(img)
-    img_metadata = metadata.restructure(img_metadata)
-    return metadata.to_json(img_metadata)
