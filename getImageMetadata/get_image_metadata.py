@@ -12,7 +12,7 @@ def lambda_handler(event: dict, context: dict) -> dict:
     # Parse user request body out from API Gateway proxy request
     request = common.get_event_body(event)
 
-    img = image.fetch_image(url)
+    img = image.fetch_image(request.get("url"))
     img_metadata = image.extract_metadata(img)
     img_metadata = metadata.restructure(img_metadata)
 
