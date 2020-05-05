@@ -20,7 +20,7 @@ def lambda_handler(event: dict, context: dict) -> dict:
     if request.get("include_thumbnail", False):
         img_metadata = metadata.remove_thumbnail(img_metadata)
 
-    response = metadata_from_url(request["url"])
+    response = metadata.to_json(img_metadata)
 
     return {
         "statusCode": 200,
