@@ -17,7 +17,7 @@ def lambda_handler(event: dict, context: dict) -> dict:
     img_metadata = metadata.restructure(img_metadata)
 
     # Return False if property doesn't exist
-    if !request.get("include_thumbnail", False):
+    if not request.get("include_thumbnail", False):
         img_metadata = metadata.remove_thumbnail(img_metadata)
 
     response = metadata.to_json(img_metadata)
